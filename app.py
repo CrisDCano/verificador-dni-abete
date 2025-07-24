@@ -16,6 +16,16 @@ if dni_frente and dni_dorso:
 
     image_frente = Image.open(dni_frente)
     image_dorso = Image.open(dni_dorso)
+    # Extracción de texto con OCR
+    texto_frente = pytesseract.image_to_string(image_frente, lang='spa')
+    texto_dorso = pytesseract.image_to_string(image_dorso, lang='spa')
+
+    # Mostrar resultados
+    st.subheader("📝 Texto extraído del Frente del DNI:")
+    st.code(texto_frente)
+
+    st.subheader("📝 Texto extraído del Dorso del DNI:")
+    st.code(texto_dorso)
 
     st.image(image_frente, caption="Frente del DNI", use_column_width=True)
     st.image(image_dorso, caption="Dorso del DNI", use_column_width=True)
